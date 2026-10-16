@@ -1,0 +1,141 @@
+/* Estilos isolados da tela de solicitação de assinatura corporativa */
+.tn-page {
+  --tn-navy: #061a38;
+  --tn-blue: #054a96;
+  --tn-muted: #435b80;
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 48px clamp(24px, 6.1vw, 98px) 30px;
+  color: var(--tn-navy);
+  background: radial-gradient(ellipse at 50% 40%, #ffffff 0%, #f0f4f9 50%, #d8e2ee 100%);
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+.tn-page *, .tn-page *::before, .tn-page *::after { box-sizing: border-box; }
+
+/* Pattern de fundo com os símbolos 'N' estilo grid */
+.tn-pattern-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+/* Curva / Onda Azul no canto inferior esquerdo sem serrilhado */
+
+
+.tn-header {
+  width: min(100%, 1420px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: clamp(48px, 7vh, 82px);
+}
+
+/* Imagens da Logo */
+.tn-logo-img { height: 42px; width: auto; display: block; object-fit: contain; }
+.tn-card-logo-img { height: 38px; width: auto; display: block; object-fit: contain; margin-bottom: 25px; }
+
+.tn-header-tagline { color: #0d284f; font-size: 10px; font-weight: 700; letter-spacing: 3px; white-space: nowrap; }
+.tn-header-tagline b { margin: 0 10px; color: var(--tn-blue); }
+
+.tn-card {
+  width: min(100%, 1030px);
+  min-height: 530px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 50px 54px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(195, 209, 228, 0.95);
+  border-radius: 20px;
+  box-shadow: 0 24px 70px rgba(6, 26, 56, 0.16);
+  backdrop-filter: blur(8px);
+}
+
+.tn-card-intro { display: flex; flex-direction: column; align-items: flex-start; padding: 12px 48px 8px 8px; }
+.tn-overline { color: #627899; font-size: 10px; font-weight: 700; letter-spacing: 3px; }
+.tn-short-line { width: 54px; height: 2px; margin: 31px 0 26px; background: var(--tn-blue); }
+.tn-card-intro h1 { max-width: 390px; margin: 0; color: var(--tn-navy); font-size: clamp(29px, 2.45vw, 37px); line-height: 1.27; font-weight: 650; letter-spacing: -1.15px; }
+.tn-card-intro h1 span { color: var(--tn-blue); }
+.tn-intro-copy { max-width: 340px; margin: 13px 0 0; color: var(--tn-muted); font-size: 14px; line-height: 1.8; }
+
+/* Bloco de Aniversário */
+.tn-anniversary { display: flex; align-items: center; gap: 19px; margin-top: auto; padding-top: 30px; }
+.tn-number-33-img { height: 75px; width: auto; object-fit: contain; display: block; }
+.tn-anniversary-divider { height: 43px; width: 1px; background: #7c93b3; margin-left: 5px; }
+.tn-anniversary-copy { display: grid; gap: 8px; }
+.tn-anniversary-copy strong { font-size: 11px; letter-spacing: 4px; color: var(--tn-navy); }
+.tn-anniversary-copy span { color: var(--tn-muted); font-size: 9px; line-height: 1.5; letter-spacing: 1.7px; }
+
+.tn-form-panel { display: flex; flex-direction: column; justify-content: center; border-left: 1px solid #dce4ee; padding: 0 0 0 42px; }
+.tn-mail-icon { width: 58px; height: 58px; display: grid; place-items: center; margin-bottom: 25px; border-radius: 20%; background: #e6eef8; color: var(--tn-blue); }
+.tn-mail-icon svg { width: 27px; height: 27px; stroke: currentColor; stroke-width: 1.5; }
+.tn-form-overline { color: #0d284f; }
+.tn-form-panel h2 { margin: 14px 0 13px; color: var(--tn-navy); font-size: clamp(26px, 2.2vw, 32px); line-height: 1.2; letter-spacing: -.9px; }
+.tn-form-copy { max-width: 370px; margin: 0 0 31px; color: var(--tn-muted); font-size: 15px; line-height: 1.8; }
+.tn-form { display: grid; gap: 12px; }
+.tn-form label { color: #0d284f; font-size: 10px; font-weight: 750; letter-spacing: 2px; }
+.tn-input-wrap { display: flex; align-items: center; gap: 13px; min-height: 56px; padding: 0 16px; border: 1px solid #b8cae0; border-radius: 10px; background: #fff; transition: border-color .15s, box-shadow .15s; }
+.tn-input-wrap:focus-within { border-color: var(--tn-blue); box-shadow: 0 0 0 3px rgba(5,74,150,.15); }
+.tn-input-wrap svg { flex: 0 0 22px; width: 22px; stroke: #526f97; stroke-width: 1.5; }
+.tn-input-wrap input { width: 100%; min-width: 0; border: 0; outline: 0; background: transparent; color: #0d284f; font: inherit; font-size: 14px; }
+.tn-input-wrap input::placeholder { color: #8298b8; }
+
+.tn-form button { min-height: 56px; display: flex; align-items: center; justify-content: center; gap: 18px; margin-top: 6px; padding: 0 20px; border: 0; border-radius: 10px; background: linear-gradient(100deg, #053b7a, #054a96); color: white; font: inherit; font-size: 14px; font-weight: 700; cursor: pointer; box-shadow: 0 7px 16px rgba(5,59,122,.25); transition: filter .15s, transform .15s; }
+.tn-form button:hover:not(:disabled) { filter: brightness(.92); transform: translateY(-1px); }
+.tn-form button:disabled { opacity: .65; cursor: wait; }
+.tn-arrow { font-size: 23px; font-weight: 400; line-height: 1; }
+.tn-security { display: flex; align-items: center; gap: 10px; margin-top: 23px; color: #5d7496; font-size: 12px; }
+.tn-security svg { width: 17px; height: 17px; stroke: currentColor; stroke-width: 1.8; }
+.tn-message { margin-top: 17px; padding: 12px 14px; border: 1px solid #c9e7d3; border-radius: 8px; background: #f0faf3; color: #17683a; font-size: 12px; line-height: 1.6; overflow-wrap: anywhere; }
+.tn-message.tn-error { border-color: #f0caca; background: #fff2f2; color: #991b1b; }
+.tn-footer { width: min(100%, 1420px); display: flex; align-items: center; gap: 17px; margin-top: auto; padding-top: 50px; color: var(--tn-navy); font-size: 9px; font-weight: 650; letter-spacing: 2.5px; }
+.tn-footer-rule { width: 50px; height: 1px; background: #91a8c7; }
+
+@media (min-width: 1500px) { .tn-card { width: 1080px; min-height: 555px; padding: 55px 60px; } }
+@media (max-width: 900px) {
+  .tn-page { padding: 32px 28px 24px; }
+  .tn-header { margin-bottom: 48px; }
+  .tn-card { padding: 36px 32px; }
+  .tn-card-intro { padding-right: 28px; }
+  .tn-form-panel { padding-left: 28px; }
+  .tn-header-tagline { font-size: 9px; letter-spacing: 1.6px; }
+  .tn-header-tagline b { margin: 0 4px; }
+  .tn-anniversary { gap: 12px; }
+  .tn-number-33-img { height: 60px; }
+}
+@media (max-width: 650px) {
+  .tn-page { min-height: 100vh; padding: 25px 16px 22px; overflow-y: auto; }
+  .tn-header { align-items: flex-start; flex-direction: column; gap: 15px; margin-bottom: 30px; }
+  .tn-logo-img { height: 34px; }
+  .tn-card-logo-img { height: 32px; margin-bottom: 17px; }
+  .tn-header-tagline { white-space: normal; font-size: 8px; letter-spacing: 1.4px; }
+  .tn-card { grid-template-columns: 1fr; padding: 28px 23px; border-radius: 16px; }
+  .tn-card-intro { padding: 0 0 28px; }
+  .tn-short-line { margin: 22px 0 18px; }
+  .tn-card-intro h1 { font-size: 29px; }
+  .tn-intro-copy { font-size: 13px; }
+  .tn-anniversary { margin-top: 25px; padding-top: 20px; }
+  .tn-number-33-img { height: 50px; }
+  .tn-form-panel { border-left: 0; border-top: 1px solid #dce4ee; padding: 28px 0 0; }
+  .tn-mail-icon { width: 48px; height: 48px; margin-bottom: 20px; }
+  .tn-form-panel h2 { font-size: 27px; }
+  .tn-form-copy { font-size: 13px; margin-bottom: 24px; }
+  .tn-footer { flex-wrap: wrap; gap: 10px; padding-top: 28px; font-size: 8px; letter-spacing: 1.5px; }
+  .tn-footer-rule { width: 28px; }
+  .tn-blue-sweep {
+    width: 140vw;
+    height: 40vh;
+    left: -20%;
+    bottom: -10%;
+    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+    transform: rotate(-5deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) { .tn-page *, .tn-page *::before, .tn-page *::after { transition: none !important; } }

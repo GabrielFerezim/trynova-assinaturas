@@ -1,0 +1,592 @@
+/* Estilos isolados da tela de pré-visualização e download de assinatura */
+.tn-page {
+    --tn-navy: #061a38;
+    --tn-blue: #054a96;
+    --tn-muted: #435b80;
+    position: relative;
+    isolation: isolate;
+    min-height: 100vh;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 48px clamp(24px, 6.1vw, 98px) 30px;
+    color: var(--tn-navy);
+    background: radial-gradient(ellipse at 50% 40%, #ffffff 0%, #f0f4f9 50%, #d8e2ee 100%);
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.tn-page *,
+.tn-page *::before,
+.tn-page *::after {
+    box-sizing: border-box;
+}
+
+/* Imagem de Padrão de Fundo repetida */
+.tn-pattern-bg {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+    background-repeat: repeat;
+    background-position: center top;
+    background-size: 380px auto;
+    opacity: 0.4;
+}
+
+/* Curva / Onda Azul no canto inferior esquerdo */
+.tn-blue-sweep {
+    position: absolute;
+    z-index: -1;
+    left: -20%;
+    bottom: -30%;
+    width: 90vw;
+    height: 75vh;
+    border-radius: 50% 60% 0 0 / 100% 100% 0 0;
+    transform: rotate(-12deg);
+    background: linear-gradient(135deg, #030e1f 0%, #061a38 45%, #0a2d59 85%);
+    box-shadow: 0 -20px 50px rgba(4, 18, 40, 0.3);
+    pointer-events: none;
+}
+
+.tn-header {
+    width: min(100%, 1200px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: clamp(32px, 5vh, 60px);
+}
+
+.tn-logo-img {
+    height: 42px;
+    width: auto;
+    display: block;
+    object-fit: contain;
+}
+
+.tn-header-tagline {
+    color: #0d284f;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    white-space: nowrap;
+}
+
+.tn-header-tagline b {
+    margin: 0 10px;
+    color: var(--tn-blue);
+}
+
+/* Card Principal da Página */
+.tn-card-preview-page {
+    width: min(100%, 960px);
+    display: flex;
+    flex-direction: column;
+    padding: 42px 48px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(195, 209, 228, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 24px 70px rgba(6, 26, 56, 0.16);
+    backdrop-filter: blur(8px);
+}
+
+.tn-card-center {
+    width: min(100%, 600px);
+    padding: 48px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.tn-card-header {
+    margin-bottom: 28px;
+}
+
+.tn-overline {
+    color: #627899;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+.tn-card-header h1 {
+    margin: 8px 0 0;
+    color: var(--tn-navy);
+    font-size: clamp(26px, 2.2vw, 32px);
+    font-weight: 650;
+}
+
+.tn-card-header h1 span {
+    color: var(--tn-blue);
+}
+
+.tn-intro-copy {
+    color: var(--tn-muted);
+    font-size: 14px;
+    line-height: 1.7;
+    margin-top: 8px;
+}
+
+/* Wrapper para a caixa de assinatura */
+.tn-signature-container {
+    display: flex;
+    justify-content: center;
+    background: #f4f7fb;
+    border: 1px solid #d4e0ee;
+    border-radius: 14px;
+    padding: 30px;
+    margin-bottom: 32px;
+    overflow-x: auto;
+}
+
+/* O cartão da assinatura que será transformado em imagem */
+.tn-signature-box {
+    background: #ffffff;
+    padding: 32px 36px;
+    border-radius: 8px;
+    border: 1px solid #e1e8f0;
+    box-shadow: 0 10px 25px rgba(6, 26, 56, 0.06);
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    min-width: 620px;
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: #061a38;
+}
+
+.tn-sig-logo img {
+    max-height: 48px;
+    width: auto;
+    display: block;
+}
+
+.tn-sig-divider {
+    width: 1px;
+    height: 110px;
+    background: #d0dcfa;
+}
+
+.tn-sig-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.tn-sig-info h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: #061a38;
+}
+
+.tn-sig-cargo {
+    font-size: 13px;
+    color: #054a96;
+    font-weight: 600;
+}
+
+.tn-sig-area {
+    font-size: 11px;
+    color: #627899;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+}
+
+.tn-sig-contacts p {
+    margin: 2px 0;
+    font-size: 12px;
+    color: #334e68;
+}
+
+.tn-sig-contacts span {
+    font-weight: 700;
+    color: #061a38;
+}
+
+.tn-sig-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+    gap: 4px;
+    padding-left: 16px;
+    border-left: 1px dashed #e1e8f0;
+}
+
+.tn-sig-33-img {
+    height: 40px;
+    width: auto;
+    margin-bottom: 6px;
+}
+
+.tn-sig-brand b {
+    font-size: 11px;
+    color: #061a38;
+}
+
+.tn-sig-brand a {
+    font-size: 11px;
+    color: #054a96;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* Botão de Ação */
+.tn-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.tn-btn-primary {
+    min-height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 0 28px;
+    border: 0;
+    border-radius: 10px;
+    background: linear-gradient(100deg, #053b7a, #054a96);
+    color: white;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 7px 16px rgba(5, 59, 122, 0.25);
+    transition: filter 0.15s, transform 0.15s;
+}
+
+.tn-btn-primary:hover:not(:disabled) {
+    filter: brightness(0.92);
+    transform: translateY(-1px);
+}
+
+.tn-btn-primary:disabled {
+    opacity: 0.65;
+    cursor: wait;
+}
+
+.tn-arrow {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.tn-loading-spinner {
+    font-size: 15px;
+    color: var(--tn-muted);
+    font-weight: 600;
+}
+
+.tn-message {
+    padding: 12px 14px;
+    border: 1px solid #c9e7d3;
+    border-radius: 8px;
+    background: #f0faf3;
+    color: #17683a;
+    font-size: 13px;
+}
+
+.tn-message.tn-error {
+    border-color: #f0caca;
+    background: #fff2f2;
+    color: #991b1b;
+}
+
+.tn-footer {
+    width: min(100%, 1200px);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 17px;
+    margin-top: auto;
+    padding-top: 50px;
+    color: var(--tn-navy);
+    font-size: 9px;
+    font-weight: 650;
+    letter-spacing: 2.5px;
+}
+
+.tn-footer-rule {
+    width: 50px;
+    height: 1px;
+    background: #91a8c7;
+}
+
+@media (max-width: 768px) {
+    .tn-card-preview-page {
+        padding: 28px 20px;
+    }
+
+    .tn-signature-container {
+        padding: 16px;
+        justify-content: flex-start;
+    }
+
+    .tn-signature-box {
+        padding: 20px;
+        gap: 16px;
+        min-width: 540px;
+    }
+
+    .tn-actions {
+        justify-content: center;
+    }
+
+    .tn-btn-primary {
+        width: 100%;
+    }
+}
+
+/* Botões de Ação na Tela Principal */
+.tn-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.tn-btn-secondary {
+    min-height: 52px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 22px;
+    border: 1px solid #054a96;
+    border-radius: 10px;
+    background: rgba(5, 74, 150, 0.06);
+    color: #054a96;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.tn-btn-secondary:hover {
+    background: #054a96;
+    color: #ffffff;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(5, 74, 150, 0.2);
+}
+
+.tn-icon-help {
+    font-size: 16px;
+}
+
+/* Modal Overlay com Animação Backdrop Blur */
+.tn-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    background: rgba(6, 26, 56, 0.55);
+    backdrop-filter: blur(8px);
+    display: grid;
+    place-items: center;
+    padding: 20px;
+    animation: fadeIn 0.25s ease-out;
+}
+
+/* Card do Modal */
+.tn-modal-content {
+    position: relative;
+    width: min(100%, 540px);
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 36px 40px;
+    box-shadow: 0 30px 80px rgba(6, 26, 56, 0.3);
+    border: 1px solid rgba(195, 209, 228, 0.8);
+    animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tn-modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    border: 0;
+    background: #f0f4f9;
+    color: #061a38;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.tn-modal-close:hover {
+    background: #e1e8f0;
+}
+
+.tn-modal-header h2 {
+    margin: 6px 0 0;
+    font-size: 24px;
+    color: #061a38;
+}
+
+.tn-modal-header h2 span {
+    color: #054a96;
+}
+
+/* Indicadores de Passo (Stepper) */
+.tn-stepper-indicators {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: 28px 0;
+}
+
+.tn-step-dot {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #e1e8f0;
+    color: #627899;
+    display: grid;
+    place-items: center;
+    font-weight: 700;
+    font-size: 13px;
+    transition: all 0.25s ease;
+}
+
+.tn-step-dot.active {
+    background: #054a96;
+    color: #ffffff;
+    box-shadow: 0 0 0 4px rgba(5, 74, 150, 0.2);
+}
+
+.tn-step-dot.completed {
+    background: #107c41;
+    color: #ffffff;
+}
+
+.tn-step-line {
+    flex: 0 0 40px;
+    height: 2px;
+    background: #e1e8f0;
+}
+
+/* Conteúdo dos Passos */
+.tn-step-body {
+    min-height: 180px;
+}
+
+.tn-step-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.tn-step-badge {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    color: #054a96;
+    text-transform: uppercase;
+    background: #e6eef8;
+    padding: 4px 10px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+.tn-step-content h3 {
+    margin: 0 0 8px;
+    font-size: 18px;
+    color: #061a38;
+}
+
+.tn-step-content p {
+    margin: 0 0 16px;
+    font-size: 14px;
+    color: #435b80;
+    line-height: 1.6;
+}
+
+.tn-step-illustration {
+    width: 100%;
+    padding: 16px;
+    background: #f4f7fb;
+    border: 1px dashed #c0d1e5;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #0d284f;
+    text-align: center;
+}
+
+/* Rodapé do Modal */
+.tn-modal-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 24px;
+    padding-top: 18px;
+    border-top: 1px solid #e1e8f0;
+}
+
+.tn-btn-step-prev {
+    border: 0;
+    background: transparent;
+    color: #627899;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 8px 16px;
+}
+
+.tn-btn-step-prev:hover {
+    color: #061a38;
+}
+
+.tn-btn-success {
+    background: linear-gradient(100deg, #107c41, #13a153) !important;
+    box-shadow: 0 7px 16px rgba(16, 124, 65, 0.25) !important;
+}
+
+/* Keyframes de Animação */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@media (max-width: 650px) {
+    .tn-actions {
+        flex-direction: column-reverse;
+    }
+
+    .tn-btn-secondary,
+    .tn-btn-primary {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .tn-modal-content {
+        padding: 28px 22px;
+    }
+}

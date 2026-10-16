@@ -1,136 +1,229 @@
-
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import html2canvas from "html2canvas";
 
 import { api } from "../api";
+import logoImg from "../../public/imagens/logo_trynova.png";
+import selo33Img from "../../public/imagens/33_anos.png";
+import patternImg from "../../public/imagens/pattern.png";
 
-// Converte o nome em um formato adequado para o nome do arquivo.
+import "../styles/Assinatura.css";
+
 const slug = (s) =>
-    s
+  s
+    ? s
         .normalize("NFD")
         .replace(/[\u0300-\u036f]/g, "")
         .replace(/[^a-zA-Z0-9]+/g, "_")
-        .toLowerCase();
+        .toLowerCase()
+    : "colaborador";
 
 export default function Assinatura() {
-    const { token } = useParams();
+  const { token } = useParams();
 
-    const [c, setC] = useState(null);
-    const [erro, setErro] = useState("");
+  const [c, setC] = useState(null);
+  const [erro, setErro] = useState("");
+  const [loadingDownload, setLoadingDownload] = useState(false);
 
-    const ref = useRef();
+  // Estado para controlar o Guia Interativo
+  const [showTutorial, setShowTutorial] = useState(false);
+  const [step, setStep] = useState(1);
 
-    // Busca os dados do colaborador usando o token da URL.
-    useEffect(() => {
-        api(`/assinaturas/${token}`)
-            .then(setC)
-            .catch((e) => setErro(e.message));
-    }, [token]);
+  const ref = useRef();
 
-    // Gera e baixa a assinatura como imagem PNG.
-    async function baixar() {
-        const canvas = await html2canvas(ref.current, {
-            scale: 3,
-            backgroundColor: "#f7f7f7",
-            useCORS: true,
-        });
+  useEffect(() => {
+    api(`/assinaturas/${token}`)
+      .then(setC)
+      .catch((e) => setErro(e.message || "Erro ao carregar dados."));
+  }, [token]);
 
-        const a = document.createElement("a");
+  async function baixar() {
+    setLoadingDownload(true);
+    try {
+      const canvas = await html2canvas(ref.current, {
+        scale: 3,
+        backgroundColor: "#ffffff",
+        useCORS: true,
+      });
 
-        a.download = `assinatura_${slug(c.nome)}.png`;
-        a.href = canvas.toDataURL("image/png");
-
-        a.click();
+      const a = document.createElement("a");
+      a.download = `assinatura_${slug(c?.nome)}.png`;
+      a.href = canvas.toDataURL("image/png");
+      a.click();
+    } catch (e) {
+      alert("Não foi possível gerar a imagem da assinatura. Tente novamente.");
+    } finally {
+      setLoadingDownload(false);
     }
+  }
 
-    // Exibe uma mensagem caso ocorra um erro.
-    if (erro) {
-        return (
-            <main>
-                <section className="card error">
-                    {erro}
-                </section>
-            </main>
-        );
-    }
-
-    // Exibe o carregamento enquanto os dados não chegam.
-    if (!c) {
-        return (
-            <main>
-                <section className="card small">
-                    Carregando...
-                </section>
-            </main>
-        );
-    }
-
+  if (erro) {
     return (
-        <main>
-            <section className="card">
-                <h1>Sua assinatura corporativa</h1>
-
-                <p>
-                    Confira os dados e baixe a imagem em PNG.
-                </p>
-
-                <div className="preview">
-                    <div className="signature" ref={ref}>
-                        {/* Logo da Trynova */}
-                        <div className="logo">
-                            <img
-                                src="/imagens/logo_trynova.svg"
-                                alt="Logo Trynova"
-                            />
-                        </div>
-
-                        {/* Informações do colaborador */}
-                        <div className="info">
-                            <h2>{c.nome}</h2>
-
-                            <div>{c.cargo}</div>
-
-                            <strong>{c.area}</strong>
-
-                            <p>
-                                <b>E-mail</b>
-                                <br />
-                                {c.email}
-                                <br />
-
-                                <b>Telefone</b>
-                                <br />
-                                {c.telefone}
-
-                                {c.ramal && ` | Ramal ${c.ramal}`}
-
-                                {c.celular && (
-                                    <>
-                                        <br />
-                                        {c.celular}
-                                    </>
-                                )}
-                            </p>
-                        </div>
-
-                        <div className="brand">
-                            <img
-                                src="/imagens/33_anos.svg"
-                                alt="33 anos"
-                            />
-
-                            <b>Trynova Consultoria Imobiliária</b>
-
-                            <span>www.trynova.com.br</span>
-                        </div>
-                    </div>
-                </div>
-
-                <button onClick={baixar}>
-                    Baixar assinatura em PNG
-                </button>
-            </section>
-        </main>
+      <main className="tn-page">
+        <div className="tn-pattern-bg" style={{ backgroundImage: `url(${patternImg})` }} aria-hidden="true" />
+        <div className="tn-blue-sweep" aria-hidden="true" />
+        <header className="tn-header">
+          <a className="tn-logo" href="#inicio"><img src={logoImg} alt="Logo" className="tn-logo-img" /></a>
+        </header>
+        <section className="tn-card tn-card-center">
+          <div className="tn-message tn-error">{erro}</div>
+        </section>
+      </main>
     );
+  }
+
+  if (!c) {
+    return (
+      <main className="tn-page">
+        <div className="tn-pattern-bg" style={{ backgroundImage: `url(${patternImg})` }} aria-hidden="true" />
+        <div className="tn-blue-sweep" aria-hidden="true" />
+        <header className="tn-header">
+          <a className="tn-logo" href="#inicio"><img src={logoImg} alt="Logo" className="tn-logo-img" /></a>
+        </header>
+        <section className="tn-card tn-card-center">
+          <div className="tn-loading-spinner">Carregando sua assinatura...</div>
+        </section>
+      </main>
+    );
+  }
+
+  return (
+    <main className="tn-page">
+      <div className="tn-pattern-bg" style={{ backgroundImage: `url(${patternImg})` }} aria-hidden="true" />
+      <div className="tn-blue-sweep" aria-hidden="true" />
+
+      <header className="tn-header">
+        <a className="tn-logo" href="#inicio">
+          <img src={logoImg} alt="Logo Corporativa" className="tn-logo-img" />
+        </a>
+        <div className="tn-header-tagline">
+          PESSOAS <b>+</b> TECNOLOGIA <b>+</b> RESULTADOS
+        </div>
+      </header>
+
+      <section className="tn-card tn-card-preview-page" id="inicio">
+        <div className="tn-card-header">
+          <div className="tn-overline">SUA ASSINATURA CORPORATIVA</div>
+          <h1>Pronta para <span>utilização.</span></h1>
+          <p className="tn-intro-copy">
+            Confira abaixo os seus dados atualizados, baixe a imagem e veja o guia de instalação no Outlook.
+          </p>
+        </div>
+
+        {/* Pré-visualização da Assinatura */}
+        <div className="tn-signature-container">
+          <div className="tn-signature-box" ref={ref}>
+            <div className="tn-sig-logo">
+              <img src={logoImg} alt="Logo Trynova" />
+            </div>
+            <div className="tn-sig-divider" />
+            <div className="tn-sig-info">
+              <h2>{c.nome}</h2>
+              <div className="tn-sig-cargo">{c.cargo}</div>
+              <strong className="tn-sig-area">{c.area}</strong>
+              <div className="tn-sig-contacts">
+                <p><span>E-mail:</span> {c.email}</p>
+                <p><span>Telefone:</span> {c.telefone} {c.ramal && `| Ramal ${c.ramal}`}</p>
+                {c.celular && <p><span>Celular:</span> {c.celular}</p>}
+              </div>
+            </div>
+            <div className="tn-sig-brand">
+              <img src={selo33Img} alt="33 anos" className="tn-sig-33-img" />
+              <b>Trynova Consultoria Imobiliária</b>
+              <a href="https://www.trynova.com.br" target="_blank" rel="noreferrer">www.trynova.com.br</a>
+            </div>
+          </div>
+        </div>
+
+        {/* Grupo de Botões Ação + Guia */}
+        <div className="tn-actions">
+          <button className="tn-btn-secondary" onClick={() => { setShowTutorial(true); setStep(1); }}>
+            <span className="tn-icon-help">💡</span>
+            <span>Como colocar no Outlook?</span>
+          </button>
+
+          <button className="tn-btn-primary" onClick={baixar} disabled={loadingDownload}>
+            <span>{loadingDownload ? "Gerando..." : "Baixar assinatura em PNG"}</span>
+            {!loadingDownload && <span className="tn-arrow">↓</span>}
+          </button>
+        </div>
+      </section>
+
+      {/* Modal / Carrossel Interativo do Tutorial */}
+      {showTutorial && (
+        <div className="tn-modal-overlay" onClick={() => setShowTutorial(false)}>
+          <div className="tn-modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="tn-modal-close" onClick={() => setShowTutorial(false)}>✕</button>
+
+            <div className="tn-modal-header">
+              <div className="tn-overline">TUTORIAL RÁPIDO</div>
+              <h2>Como configurar no <span>Outlook</span></h2>
+            </div>
+
+            {/* Passos Animados */}
+            <div className="tn-stepper-indicators">
+              <div className={`tn-step-dot ${step === 1 ? "active" : step > 1 ? "completed" : ""}`}>1</div>
+              <div className="tn-step-line" />
+              <div className={`tn-step-dot ${step === 2 ? "active" : step > 2 ? "completed" : ""}`}>2</div>
+              <div className="tn-step-line" />
+              <div className={`tn-step-dot ${step === 3 ? "active" : ""}`}>3</div>
+            </div>
+
+            <div className="tn-step-body">
+              {step === 1 && (
+                <div className="tn-step-content fade-in">
+                  <div className="tn-step-badge">Passo 01</div>
+                  <h3>Baixe a Imagem</h3>
+                  <p>Clique no botão azul <b>"Baixar assinatura em PNG"</b> para salvar o arquivo no seu computador.</p>
+                  <div className="tn-step-illustration">📥 Arquivo salvo na pasta Downloads</div>
+                </div>
+              )}
+
+              {step === 2 && (
+                <div className="tn-step-content fade-in">
+                  <div className="tn-step-badge">Passo 02</div>
+                  <h3>Acesse as Configurações do Outlook</h3>
+                  <p>No Outlook, vá em <b>Arquivo &gt; Opções &gt; Email &gt; Assinaturas</b> (ou no ícone de engrenagem na versão Web).</p>
+                  <div className="tn-step-illustration">⚙️ Configurações &gt; Assinatura de E-mail</div>
+                </div>
+              )}
+
+              {step === 3 && (
+                <div className="tn-step-content fade-in">
+                  <div className="tn-step-badge">Passo 03</div>
+                  <h3>Insira e Salve</h3>
+                  <p>Crie uma nova assinatura, clique no ícone de <b>Inserir Imagem 🖼️</b>, selecione o PNG baixado e salve!</p>
+                  <div className="tn-step-illustration">✅ Pronto! Sua assinatura corporativa está ativa.</div>
+                </div>
+              )}
+            </div>
+
+            {/* Controles do Stepper */}
+            <div className="tn-modal-footer">
+              {step > 1 ? (
+                <button className="tn-btn-step-prev" onClick={() => setStep(step - 1)}>
+                  Anterior
+                </button>
+              ) : <div />}
+
+              {step < 3 ? (
+                <button className="tn-btn-primary" onClick={() => setStep(step + 1)}>
+                  Próximo Passo →
+                </button>
+              ) : (
+                <button className="tn-btn-primary tn-btn-success" onClick={() => setShowTutorial(false)}>
+                  Entendi! Fechar
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      <footer className="tn-footer">
+        <span className="tn-footer-rule" />
+        <span>COMUNICAÇÃO CORPORATIVA</span>
+      </footer>
+    </main>
+  );
 }
