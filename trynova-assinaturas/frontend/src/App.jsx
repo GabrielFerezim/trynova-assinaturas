@@ -3,6 +3,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 
 import Solicitar from "./pages/Solicitar";
 import Assinatura from "./pages/Assinatura";
+import Admin from "./pages/Admin";
 
 export default function App() {
     return (
@@ -15,6 +16,11 @@ export default function App() {
             <Route
                 path="/assinatura/:token"
                 element={<Assinatura />}
+            />
+
+            <Route
+                path="/admin"
+                element={<Admin />}
             />
 
             <Route

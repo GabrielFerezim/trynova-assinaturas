@@ -8,20 +8,22 @@ const camposObrigatorios = [
   "SMTP_FROM",
 ];
 
-function validarConfiguracao() {
+function temConfiguracaoSmtp() {
   const ausentes = camposObrigatorios.filter(
     (campo) => !process.env[campo]?.trim()
   );
-
-  if (ausentes.length > 0) {
-    throw new Error(
-      `Configuração SMTP incompleta: ${ausentes.join(", ")}`
-    );
-  }
+  return ausentes.length === 0;
 }
 
 export async function enviarLink({ para, nome, link }) {
-  validarConfiguracao();
+  if (!temConfiguracaoSmtp()) {
+    console.log("\n=======================================================");
+    console.log(`[MODO DEV] SMTP não configurado. Link gerado:`);
+    console.log(`Colaborador: ${nome} <${para}>`);
+    console.log(`Link: ${link}`);
+    console.log("=======================================================\n");
+    return { dev: true };
+  }
 
   const transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST,
@@ -73,7 +75,7 @@ export async function enviarLink({ para, nome, link }) {
                   <td align="center" style="background: #061a38; padding: 36px 30px; text-align: center;">
                     <img src="${appUrl}/imagens/logo_trynova.png" alt="Trynova Logo" width="160" style="display: block; margin: 0 auto 12px auto; max-width: 180px; height: auto;" />
                     <div style="color: #92b0d8; font-size: 9px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase;">
-                      PESSOAS <span style="color: #054a96;">+</span> TECNOLOGIA <span style="color: #054a96;">+</span> RESULTADOS
+                      PESSOAS <span style="color: #054a96;">+</span> PROCESSOS  <span style="color: #054a96;">+</span> RESULTADOS
                     </div>
                   </td>
                 </tr>

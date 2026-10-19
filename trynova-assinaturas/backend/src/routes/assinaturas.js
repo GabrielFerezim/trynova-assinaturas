@@ -13,16 +13,14 @@ router.post("/solicitar", async (req, res, next) => {
 
         if (!c) return res.json(resposta);
         const token = criarToken(c.id);
-        const link = `${process.env.FRONTEND_URL}/assinatura/${token}`;
-        const envio = await enviarLink({
+        const link = `${process.env.FRONTEND_URL || "http://localhost:5173"}/assinatura/${token}`;
+        await enviarLink({
             para: c.email,
             nome: c.nome,
             link,
         });
-        res.json(resposta);
 
-        if (envio.dev) resposta.devLink = link;
-        res.json(resposta);
+        return res.json(resposta);
     } catch (e) {
         next(e);
     }

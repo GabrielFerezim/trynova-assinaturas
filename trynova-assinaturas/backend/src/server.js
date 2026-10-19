@@ -8,8 +8,9 @@ import rateLimit from "express-rate-limit";
 import { ZodError } from "zod";
 
 import assinaturas from "./routes/assinaturas.js";
+import admin from "./routes/admin.js";
 
-// Inicializa a aplicação Express.
+// Inicializa a aplicação Express (Trynova Assinaturas API)
 const app = express();
 
 // Configurações de segurança.
@@ -34,6 +35,9 @@ app.get("/api/health", (_, res) => {
         status: "ok",
     });
 });
+
+// Rotas administrativas (gestão de colaboradores e assinaturas).
+app.use("/api/admin", admin);
 
 // Rotas de assinaturas com limite de requisições.
 app.use(

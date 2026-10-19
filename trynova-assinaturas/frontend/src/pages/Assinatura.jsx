@@ -3,19 +3,19 @@ import { useParams } from "react-router-dom";
 import html2canvas from "html2canvas";
 
 import { api } from "../api";
-import logoImg from "../../public/imagens/logo_trynova.png";
-import selo33Img from "../../public/imagens/33_anos.png";
-import patternImg from "../../public/imagens/pattern.png";
+const logoImg = "/imagens/logo_trynova.png";
+const selo33Img = "/imagens/33_anos.png";
+const patternImg = "/imagens/pattern.png";
 
 import "../styles/Assinatura.css";
 
 const slug = (s) =>
   s
     ? s
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .replace(/[^a-zA-Z0-9]+/g, "_")
-        .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-zA-Z0-9]+/g, "_")
+      .toLowerCase()
     : "colaborador";
 
 export default function Assinatura() {
@@ -41,9 +41,11 @@ export default function Assinatura() {
     setLoadingDownload(true);
     try {
       const canvas = await html2canvas(ref.current, {
-        scale: 3,
-        backgroundColor: "#ffffff",
+        scale: 2,
+        backgroundColor: "#f7f7f7",
         useCORS: true,
+        width: 600,
+        height: 200,
       });
 
       const a = document.createElement("a");
@@ -97,7 +99,7 @@ export default function Assinatura() {
           <img src={logoImg} alt="Logo Corporativa" className="tn-logo-img" />
         </a>
         <div className="tn-header-tagline">
-          PESSOAS <b>+</b> TECNOLOGIA <b>+</b> RESULTADOS
+          PESSOAS <b>+</b> PROCESSOS <b>+</b> RESULTADOS
         </div>
       </header>
 
@@ -116,29 +118,30 @@ export default function Assinatura() {
             <div className="tn-sig-logo">
               <img src={logoImg} alt="Logo Trynova" />
             </div>
-            <div className="tn-sig-divider" />
-            <div className="tn-sig-info">
-              <h2>{c.nome}</h2>
-              <div className="tn-sig-cargo">{c.cargo}</div>
-              <strong className="tn-sig-area">{c.area}</strong>
-              <div className="tn-sig-contacts">
-                <p><span>E-mail:</span> {c.email}</p>
-                <p><span>Telefone:</span> {c.telefone} {c.ramal && `| Ramal ${c.ramal}`}</p>
-                {c.celular && <p><span>Celular:</span> {c.celular}</p>}
-              </div>
+
+            <div className="tn-sig-name">{c.nome}</div>
+            <div className="tn-sig-cargo">{c.cargo}</div>
+            <div className="tn-sig-area">{c.area}</div>
+
+            <div className="tn-sig-email-label">E-mail</div>
+            <div className="tn-sig-email-val">{c.email}</div>
+
+            <div className="tn-sig-tel-label">Telefone</div>
+            <div className="tn-sig-tel-val">
+              {c.telefone}
+              {c.ramal ? ` | Ramal ${c.ramal}` : ""}
+              {c.celular ? ` | ${c.celular}` : ""}
             </div>
-            <div className="tn-sig-brand">
-              <img src={selo33Img} alt="33 anos" className="tn-sig-33-img" />
-              <b>Trynova Consultoria Imobiliária</b>
-              <a href="https://www.trynova.com.br" target="_blank" rel="noreferrer">www.trynova.com.br</a>
-            </div>
+
+            <img src={selo33Img} alt="33 anos" className="tn-sig-33-img" />
+            <div className="tn-sig-company">Trynova Consultoria Imobiliária</div>
+            <div className="tn-sig-site">www.trynova.com.br</div>
           </div>
         </div>
 
         {/* Grupo de Botões Ação + Guia */}
         <div className="tn-actions">
           <button className="tn-btn-secondary" onClick={() => { setShowTutorial(true); setStep(1); }}>
-            <span className="tn-icon-help">💡</span>
             <span>Como colocar no Outlook?</span>
           </button>
 
@@ -153,7 +156,7 @@ export default function Assinatura() {
       {showTutorial && (
         <div className="tn-modal-overlay" onClick={() => setShowTutorial(false)}>
           <div className="tn-modal-content" onClick={(e) => e.stopPropagation()}>
-            <button className="tn-modal-close" onClick={() => setShowTutorial(false)}>✕</button>
+            <button className="tn-modal-close" onClick={() => setShowTutorial(false)}>&#10005;</button>
 
             <div className="tn-modal-header">
               <div className="tn-overline">TUTORIAL RÁPIDO</div>
@@ -175,7 +178,7 @@ export default function Assinatura() {
                   <div className="tn-step-badge">Passo 01</div>
                   <h3>Baixe a Imagem</h3>
                   <p>Clique no botão azul <b>"Baixar assinatura em PNG"</b> para salvar o arquivo no seu computador.</p>
-                  <div className="tn-step-illustration">📥 Arquivo salvo na pasta Downloads</div>
+                  <div className="tn-step-illustration">Arquivo salvo na pasta Downloads</div>
                 </div>
               )}
 
@@ -184,7 +187,7 @@ export default function Assinatura() {
                   <div className="tn-step-badge">Passo 02</div>
                   <h3>Acesse as Configurações do Outlook</h3>
                   <p>No Outlook, vá em <b>Arquivo &gt; Opções &gt; Email &gt; Assinaturas</b> (ou no ícone de engrenagem na versão Web).</p>
-                  <div className="tn-step-illustration">⚙️ Configurações &gt; Assinatura de E-mail</div>
+                  <div className="tn-step-illustration">Configuracoes &gt; Assinatura de E-mail</div>
                 </div>
               )}
 
@@ -192,8 +195,8 @@ export default function Assinatura() {
                 <div className="tn-step-content fade-in">
                   <div className="tn-step-badge">Passo 03</div>
                   <h3>Insira e Salve</h3>
-                  <p>Crie uma nova assinatura, clique no ícone de <b>Inserir Imagem 🖼️</b>, selecione o PNG baixado e salve!</p>
-                  <div className="tn-step-illustration">✅ Pronto! Sua assinatura corporativa está ativa.</div>
+                  <p>Crie uma nova assinatura, clique no icone de <b>Inserir Imagem</b>, selecione o PNG baixado e salve!</p>
+                  <div className="tn-step-illustration">Pronto! Sua assinatura corporativa esta ativa.</div>
                 </div>
               )}
             </div>
@@ -222,7 +225,7 @@ export default function Assinatura() {
 
       <footer className="tn-footer">
         <span className="tn-footer-rule" />
-        <span>COMUNICAÇÃO CORPORATIVA</span>
+        <span className="tn-footer-text" >Copyrights ©Trynova LTDA. Todos os direitos reservados.</span>
       </footer>
     </main>
   );

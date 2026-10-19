@@ -140,98 +140,164 @@
     overflow-x: auto;
 }
 
-/* O cartão da assinatura que será transformado em imagem */
+/* O cartão da assinatura (600x200 idêntico à referência oficial) */
 .tn-signature-box {
-    background: #ffffff;
-    padding: 32px 36px;
-    border-radius: 8px;
-    border: 1px solid #e1e8f0;
-    box-shadow: 0 10px 25px rgba(6, 26, 56, 0.06);
-    display: flex;
-    align-items: center;
-    gap: 28px;
-    min-width: 620px;
-    font-family: "Segoe UI", Arial, sans-serif;
-    color: #061a38;
+    width: 600px;
+    height: 200px;
+    min-width: 600px;
+    max-width: 600px;
+    min-height: 200px;
+    max-height: 200px;
+    background-color: #f7f7f7;
+    position: relative;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+    color: #6e6e6e;
+    overflow: hidden;
+    border: none;
+    border-radius: 0;
+    box-shadow: 0 4px 18px rgba(6, 26, 56, 0.08);
+}
+
+/* Logo TN à esquerda: top=39px, left=39px, w=89px, h=89px (alinhada com o Nome no topo e com o E-mail na base) */
+.tn-sig-logo {
+    position: absolute;
+    left: 39px;
+    top: 39px;
+    width: 89px;
+    height: 89px;
 }
 
 .tn-sig-logo img {
-    max-height: 48px;
-    width: auto;
+    width: 89px;
+    height: 89px;
     display: block;
+    object-fit: contain;
 }
 
-.tn-sig-divider {
-    width: 1px;
-    height: 110px;
-    background: #d0dcfa;
-}
-
-.tn-sig-info {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-}
-
-.tn-sig-info h2 {
-    margin: 0;
-    font-size: 18px;
+/* Nome: top=39px (alinhado perfeitamente ao topo da logo) */
+.tn-sig-name {
+    position: absolute;
+    left: 167px;
+    top: 39px;
+    font-size: 21px;
     font-weight: 700;
-    color: #061a38;
-}
-
-.tn-sig-cargo {
-    font-size: 13px;
-    color: #054a96;
-    font-weight: 600;
-}
-
-.tn-sig-area {
-    font-size: 11px;
-    color: #627899;
+    color: #23325a;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 6px;
+    line-height: 1.1;
+    letter-spacing: 0.1px;
+    white-space: nowrap;
 }
 
-.tn-sig-contacts p {
-    margin: 2px 0;
-    font-size: 12px;
-    color: #334e68;
+/* Cargo: top=65px */
+.tn-sig-cargo {
+    position: absolute;
+    left: 167px;
+    top: 65px;
+    font-size: 13px;
+    font-weight: 400;
+    color: #6e6e6e;
+    line-height: 1.1;
+    white-space: nowrap;
 }
 
-.tn-sig-contacts span {
+/* Área: top=81px */
+.tn-sig-area {
+    position: absolute;
+    left: 167px;
+    top: 81px;
+    font-size: 11.5px;
     font-weight: 700;
-    color: #061a38;
+    color: #6e6e6e;
+    text-transform: uppercase;
+    line-height: 1.1;
+    white-space: nowrap;
 }
 
-.tn-sig-brand {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    text-align: right;
-    gap: 4px;
-    padding-left: 16px;
-    border-left: 1px dashed #e1e8f0;
+/* Título E-mail: top=107px (alinhado com o selo 33 anos no lado direito) */
+.tn-sig-email-label {
+    position: absolute;
+    left: 167px;
+    top: 107px;
+    font-size: 10.5px;
+    font-weight: 700;
+    color: #23325a;
+    line-height: 1.1;
+    white-space: nowrap;
 }
 
+/* Valor E-mail: top=120px */
+.tn-sig-email-val {
+    position: absolute;
+    left: 167px;
+    top: 120px;
+    font-size: 10.5px;
+    font-weight: 400;
+    color: #6e6e6e;
+    line-height: 1.1;
+    white-space: nowrap;
+}
+
+/* Título Telefone: top=139px */
+.tn-sig-tel-label {
+    position: absolute;
+    left: 167px;
+    top: 139px;
+    font-size: 10.5px;
+    font-weight: 700;
+    color: #23325a;
+    line-height: 1.1;
+    white-space: nowrap;
+}
+
+/* Informações do Telefone: top=152px (alinhado com Trynova Consultoria no lado direito) */
+.tn-sig-tel-val {
+    position: absolute;
+    left: 167px;
+    top: 152px;
+    font-size: 10.5px;
+    font-weight: 400;
+    color: #6e6e6e;
+    line-height: 1.1;
+    white-space: nowrap;
+}
+
+/* Selo 33 Anos: top=106px (alinhado ao título E-mail em top=107px) */
 .tn-sig-33-img {
-    height: 40px;
-    width: auto;
-    margin-bottom: 6px;
+    position: absolute;
+    right: 27px;
+    top: 106px;
+    width: 38px;
+    height: 37px;
+    display: block;
+    object-fit: contain;
 }
 
-.tn-sig-brand b {
-    font-size: 11px;
-    color: #061a38;
+/* Trynova Consultoria Imobiliária: top=152px (alinhado com a linha de Telefone em top=152px) */
+.tn-sig-company {
+    position: absolute;
+    right: 27px;
+    top: 152px;
+    font-size: 11.5px;
+    font-weight: 700;
+    color: #23325a;
+    line-height: 1.1;
+    white-space: nowrap;
+    text-align: right;
 }
 
-.tn-sig-brand a {
-    font-size: 11px;
-    color: #054a96;
+/* Site: top=167px */
+.tn-sig-site {
+    position: absolute;
+    right: 27px;
+    top: 167px;
+    font-size: 10.5px;
+    font-weight: 400;
+    color: #6e6e6e;
+    line-height: 1.1;
     text-decoration: none;
-    font-weight: 600;
+    white-space: nowrap;
+    text-align: right;
 }
 
 /* Botão de Ação */
@@ -312,7 +378,7 @@
 .tn-footer-rule {
     width: 50px;
     height: 1px;
-    background: #91a8c7;
+    background: #ffffff;
 }
 
 @media (max-width: 768px) {
@@ -323,12 +389,6 @@
     .tn-signature-container {
         padding: 16px;
         justify-content: flex-start;
-    }
-
-    .tn-signature-box {
-        padding: 20px;
-        gap: 16px;
-        min-width: 540px;
     }
 
     .tn-actions {
@@ -546,6 +606,10 @@
 .tn-btn-success {
     background: linear-gradient(100deg, #107c41, #13a153) !important;
     box-shadow: 0 7px 16px rgba(16, 124, 65, 0.25) !important;
+}
+
+.tn-footer-text {
+    color: #fff
 }
 
 /* Keyframes de Animação */

@@ -91,8 +91,221 @@
 .tn-form button:hover:not(:disabled) { filter: brightness(.92); transform: translateY(-1px); }
 .tn-form button:disabled { opacity: .65; cursor: wait; }
 .tn-arrow { font-size: 23px; font-weight: 400; line-height: 1; }
-.tn-security { display: flex; align-items: center; gap: 10px; margin-top: 23px; color: #5d7496; font-size: 12px; }
-.tn-security svg { width: 17px; height: 17px; stroke: currentColor; stroke-width: 1.8; }
+.tn-security-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 23px;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.tn-security {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #5d7496;
+  font-size: 12px;
+}
+
+.tn-security svg {
+  width: 17px;
+  height: 17px;
+  stroke: currentColor;
+  stroke-width: 1.8;
+}
+
+.tn-admin-trigger-link {
+  background: transparent;
+  border: none;
+  color: #054a96;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  padding: 4px 6px;
+  border-radius: 4px;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.tn-admin-trigger-link:hover {
+  color: #061a38;
+  background: rgba(5, 74, 150, 0.08);
+}
+
+/* Modal Microsoft Entra ID */
+.tn-admin-login-card {
+  max-width: 500px !important;
+  padding: 36px 38px !important;
+  border-radius: 20px !important;
+}
+
+.tn-admin-login-header {
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+.tn-entra-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px;
+  background: #f0f4f9;
+  border-radius: 20px;
+  border: 1px solid #d4e0ee;
+  font-size: 11px;
+  font-weight: 700;
+  color: #061a38;
+  margin-bottom: 12px;
+}
+
+.tn-ms-logo {
+  width: 14px;
+  height: 14px;
+}
+
+.tn-admin-login-header h2 {
+  margin: 0;
+  font-size: 24px;
+  color: #061a38;
+}
+
+.tn-admin-login-header h2 span {
+  color: #054a96;
+}
+
+.tn-admin-login-sub {
+  margin: 6px 0 0;
+  font-size: 13px;
+  color: #627899;
+}
+
+.tn-entra-quick-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.tn-entra-label {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #061a38;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.tn-entra-accounts-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tn-entra-account-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid #d4e0ee;
+  background: #f8fafc;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.tn-entra-account-btn:hover {
+  background: #eef5fc;
+  border-color: #054a96;
+  transform: translateY(-1px);
+}
+
+.tn-entra-acc-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #054a96;
+  color: #ffffff;
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.tn-entra-acc-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.tn-entra-acc-info strong {
+  font-size: 13px;
+  color: #061a38;
+}
+
+.tn-entra-acc-info span {
+  font-size: 11px;
+  color: #627899;
+}
+
+.tn-entra-arrow {
+  color: #054a96;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.tn-login-divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 18px 0;
+  color: #8c9eb5;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.tn-login-divider::before,
+.tn-login-divider::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid #e1e8f0;
+}
+
+.tn-login-divider span {
+  padding: 0 10px;
+}
+
+.tn-admin-notice {
+  margin-top: 18px;
+  font-size: 11px;
+  color: #627899;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.tn-admin-login-field {
+  margin-bottom: 4px;
+}
+
+.tn-admin-login-field label {
+  display: block;
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: 1.5px;
+  color: #0d284f;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.tn-admin-login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
 .tn-message { margin-top: 17px; padding: 12px 14px; border: 1px solid #c9e7d3; border-radius: 8px; background: #f0faf3; color: #17683a; font-size: 12px; line-height: 1.6; overflow-wrap: anywhere; }
 .tn-message.tn-error { border-color: #f0caca; background: #fff2f2; color: #991b1b; }
 .tn-footer { width: min(100%, 1420px); display: flex; align-items: center; gap: 17px; margin-top: auto; padding-top: 50px; color: var(--tn-navy); font-size: 9px; font-weight: 650; letter-spacing: 2.5px; }
