@@ -169,17 +169,11 @@ export async function enviarLink({ para, nome, link }) {
                             <tr>
                               <td width="20" valign="top" style="color: #054a96; font-size: 13px; font-weight: 700; line-height: 1.5;">1.</td>
                               <td valign="top" style="color: #475569; font-size: 13px; line-height: 1.5; padding-bottom: 6px;">
-                                Acesse o link individual pelo botão abaixo;
-                              </td>
-                            </tr>
-                            <tr>
-                              <td width="20" valign="top" style="color: #054a96; font-size: 13px; font-weight: 700; line-height: 1.5;">2.</td>
-                              <td valign="top" style="color: #475569; font-size: 13px; line-height: 1.5; padding-bottom: 6px;">
                                 Confira seus dados profissionais (cargo, departamento, ramal e telefone);
                               </td>
                             </tr>
                             <tr>
-                              <td width="20" valign="top" style="color: #054a96; font-size: 13px; font-weight: 700; line-height: 1.5;">3.</td>
+                              <td width="20" valign="top" style="color: #054a96; font-size: 13px; font-weight: 700; line-height: 1.5;">2.</td>
                               <td valign="top" style="color: #475569; font-size: 13px; line-height: 1.5;">
                                 Copie ou baixe o arquivo oficial e aplique em seu Microsoft Outlook.
                               </td>
@@ -228,7 +222,7 @@ export async function enviarLink({ para, nome, link }) {
                             Atenciosamente,
                           </p>
                           <p style="color: #061a38; font-size: 13px; font-weight: 700; margin: 0 0 2px 0;">
-                            Tecnologia da Informação & Comunicação Corporativa
+                            Tecnologia da Informação
                           </p>
                           <p style="color: #64748b; font-size: 12px; margin: 0;">
                             Trynova Consultoria Imobiliária
