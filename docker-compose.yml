@@ -1,0 +1,30 @@
+services:
+  api:
+    build:
+      context: ./trynova-assinaturas/backend
+      dockerfile: Dockerfile
+    container_name: trynova_api
+    restart: unless-stopped
+    env_file:
+      - ./trynova-assinaturas/backend/.env
+    environment:
+      - PORT=3001
+    networks:
+      - trynova_net
+
+  web:
+    build:
+      context: ./trynova-assinaturas/frontend
+      dockerfile: Dockerfile
+    container_name: trynova_web
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      - api
+    networks:
+      - trynova_net
+
+networks:
+  trynova_net:
+    driver: bridge
