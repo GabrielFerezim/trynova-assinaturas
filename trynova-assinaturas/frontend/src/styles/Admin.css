@@ -28,7 +28,7 @@
     opacity: 0.45;
 }
 
-.tn-admin-page > * {
+.tn-admin-page>* {
     position: relative;
     z-index: 1;
 }
@@ -580,5 +580,127 @@
     .tn-admin-header {
         flex-direction: column;
         align-items: flex-start;
+    }
+}
+
+
+/* Painel administrativo: layout otimizado */
+.tn-admin-page {
+    padding: 20px clamp(16px, 2.5vw, 36px) 24px;
+}
+
+.tn-admin-header {
+    max-width: 1320px;
+    margin-bottom: 18px;
+    padding: 14px 20px;
+    border-radius: 12px;
+    gap: 14px;
+}
+
+.tn-admin-logo {
+    height: 32px;
+}
+
+.tn-admin-title-wrap h1 {
+    font-size: 18px;
+}
+
+.tn-admin-container {
+    max-width: 1320px;
+    grid-template-columns: minmax(270px, 330px) minmax(0, 1fr);
+    gap: 20px;
+}
+
+.tn-admin-list-card {
+    height: min(720px, calc(100vh - 150px));
+    min-height: 350px;
+    border-radius: 14px;
+}
+
+.tn-admin-list-header {
+    padding: 16px;
+}
+
+.tn-colab-list {
+    padding: 8px;
+    gap: 4px;
+}
+
+.tn-colab-item {
+    padding: 10px;
+    gap: 10px;
+}
+
+.tn-colab-avatar {
+    width: 34px;
+    height: 34px;
+}
+
+.tn-admin-editor-card {
+    min-width: 0;
+    padding: 22px 24px;
+    gap: 18px;
+    border-radius: 14px;
+}
+
+.tn-editor-headline h2 {
+    font-size: 18px;
+}
+
+.tn-admin-preview-section,
+.tn-admin-form-section {
+    gap: 12px;
+}
+
+.tn-form-grid {
+    gap: 12px 16px;
+}
+
+.tn-admin-field input {
+    padding: 9px 12px;
+}
+
+.tn-admin-footer-bar {
+    padding-top: 14px;
+}
+
+.tn-btn-save,
+.tn-btn-download {
+    padding: 10px 18px;
+}
+
+@media (max-width: 1050px) {
+    .tn-admin-container {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .tn-admin-list-card {
+        height: 320px;
+        min-height: 0;
+    }
+}
+
+@media (max-width: 650px) {
+    .tn-admin-page {
+        padding: 14px 12px 20px;
+    }
+
+    .tn-admin-header {
+        padding: 14px;
+    }
+
+    .tn-admin-top-actions,
+    .tn-editor-actions,
+    .tn-footer-right-buttons {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .tn-admin-editor-card {
+        padding: 16px;
+    }
+
+    .tn-admin-signature-wrap {
+        justify-content: flex-start;
     }
 }

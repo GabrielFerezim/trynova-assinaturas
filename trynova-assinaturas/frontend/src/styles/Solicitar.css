@@ -1,23 +1,43 @@
-/* Estilos isolados da tela de solicitação de assinatura corporativa */
+/* =========================================================
+   TRYNOVA — TELA DE SOLICITAÇÃO DE ASSINATURA
+   Layout, formulário, modal administrativo e responsividade
+   ========================================================= */
+
+/* ---------- Variáveis e estrutura principal ---------- */
+
 .tn-page {
   --tn-navy: #061a38;
   --tn-blue: #054a96;
   --tn-muted: #435b80;
+
   position: relative;
   isolation: isolate;
-  min-height: 100vh;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 48px clamp(24px, 6.1vw, 98px) 30px;
+
+  min-height: 100vh;
+  padding: 30px clamp(24px, 4vw, 64px) 22px;
+
+  overflow: hidden;
   color: var(--tn-navy);
-  background: radial-gradient(ellipse at 50% 40%, #ffffff 0%, #f0f4f9 50%, #d8e2ee 100%);
+
+  background: radial-gradient(ellipse at 50% 40%,
+      #ffffff 0%,
+      #f0f4f9 50%,
+      #d8e2ee 100%);
+
   font-family: "Segoe UI", Arial, sans-serif;
 }
-.tn-page *, .tn-page *::before, .tn-page *::after { box-sizing: border-box; }
 
-/* Pattern de fundo com os símbolos 'N' estilo grid */
+.tn-page *,
+.tn-page *::before,
+.tn-page *::after {
+  box-sizing: border-box;
+}
+
+/* ---------- Fundo ---------- */
+
 .tn-pattern-bg {
   position: absolute;
   inset: 0;
@@ -26,84 +46,329 @@
   opacity: 0.85;
 }
 
-/* Curva / Onda Azul no canto inferior esquerdo sem serrilhado */
-
+/* ---------- Cabeçalho ---------- */
 
 .tn-header {
-  width: min(100%, 1420px);
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  margin-bottom: clamp(48px, 7vh, 82px);
+
+  width: min(100%, 1240px);
+  margin-bottom: clamp(28px, 5vh, 46px);
 }
 
-/* Imagens da Logo */
-.tn-logo-img { height: 42px; width: auto; display: block; object-fit: contain; }
-.tn-card-logo-img { height: 38px; width: auto; display: block; object-fit: contain; margin-bottom: 25px; }
+.tn-logo-img {
+  display: block;
+  width: auto;
+  height: 36px;
+  object-fit: contain;
+}
 
-.tn-header-tagline { color: #0d284f; font-size: 10px; font-weight: 700; letter-spacing: 3px; white-space: nowrap; }
-.tn-header-tagline b { margin: 0 10px; color: var(--tn-blue); }
+.tn-header-tagline {
+  color: #0d284f;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  white-space: nowrap;
+}
+
+.tn-header-tagline b {
+  margin: 0 10px;
+  color: var(--tn-blue);
+}
+
+/* ---------- Cartão principal ---------- */
 
 .tn-card {
-  width: min(100%, 1030px);
-  min-height: 530px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  padding: 50px 54px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+
+  width: min(100%, 960px);
+  min-height: 0;
+  padding: 36px 40px;
+
   background: rgba(255, 255, 255, 0.95);
   border: 1px solid rgba(195, 209, 228, 0.95);
-  border-radius: 20px;
+  border-radius: 16px;
+
   box-shadow: 0 24px 70px rgba(6, 26, 56, 0.16);
   backdrop-filter: blur(8px);
 }
 
-.tn-card-intro { display: flex; flex-direction: column; align-items: flex-start; padding: 12px 48px 8px 8px; }
-.tn-overline { color: #627899; font-size: 10px; font-weight: 700; letter-spacing: 3px; }
-.tn-short-line { width: 54px; height: 2px; margin: 31px 0 26px; background: var(--tn-blue); }
-.tn-card-intro h1 { max-width: 390px; margin: 0; color: var(--tn-navy); font-size: clamp(29px, 2.45vw, 37px); line-height: 1.27; font-weight: 650; letter-spacing: -1.15px; }
-.tn-card-intro h1 span { color: var(--tn-blue); }
-.tn-intro-copy { max-width: 340px; margin: 13px 0 0; color: var(--tn-muted); font-size: 14px; line-height: 1.8; }
+/* ---------- Coluna institucional ---------- */
 
-/* Bloco de Aniversário */
-.tn-anniversary { display: flex; align-items: center; gap: 19px; margin-top: auto; padding-top: 30px; }
-.tn-number-33-img { height: 75px; width: auto; object-fit: contain; display: block; }
-.tn-anniversary-divider { height: 43px; width: 1px; background: #7c93b3; margin-left: 5px; }
-.tn-anniversary-copy { display: grid; gap: 8px; }
-.tn-anniversary-copy strong { font-size: 11px; letter-spacing: 4px; color: var(--tn-navy); }
-.tn-anniversary-copy span { color: var(--tn-muted); font-size: 9px; line-height: 1.5; letter-spacing: 1.7px; }
+.tn-card-intro {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 
-.tn-form-panel { display: flex; flex-direction: column; justify-content: center; border-left: 1px solid #dce4ee; padding: 0 0 0 42px; }
-.tn-mail-icon { width: 58px; height: 58px; display: grid; place-items: center; margin-bottom: 25px; border-radius: 20%; background: #e6eef8; color: var(--tn-blue); }
-.tn-mail-icon svg { width: 27px; height: 27px; stroke: currentColor; stroke-width: 1.5; }
-.tn-form-overline { color: #0d284f; }
-.tn-form-panel h2 { margin: 14px 0 13px; color: var(--tn-navy); font-size: clamp(26px, 2.2vw, 32px); line-height: 1.2; letter-spacing: -.9px; }
-.tn-form-copy { max-width: 370px; margin: 0 0 31px; color: var(--tn-muted); font-size: 15px; line-height: 1.8; }
-.tn-form { display: grid; gap: 12px; }
-.tn-form label { color: #0d284f; font-size: 10px; font-weight: 750; letter-spacing: 2px; }
-.tn-input-wrap { display: flex; align-items: center; gap: 13px; min-height: 56px; padding: 0 16px; border: 1px solid #b8cae0; border-radius: 10px; background: #fff; transition: border-color .15s, box-shadow .15s; }
-.tn-input-wrap:focus-within { border-color: var(--tn-blue); box-shadow: 0 0 0 3px rgba(5,74,150,.15); }
-.tn-input-wrap svg { flex: 0 0 22px; width: 22px; stroke: #526f97; stroke-width: 1.5; }
-.tn-input-wrap input { width: 100%; min-width: 0; border: 0; outline: 0; background: transparent; color: #0d284f; font: inherit; font-size: 14px; }
-.tn-input-wrap input::placeholder { color: #8298b8; }
+  min-width: 0;
+  padding: 8px 32px 8px 0;
+}
 
-.tn-form button { min-height: 56px; display: flex; align-items: center; justify-content: center; gap: 18px; margin-top: 6px; padding: 0 20px; border: 0; border-radius: 10px; background: linear-gradient(100deg, #053b7a, #054a96); color: white; font: inherit; font-size: 14px; font-weight: 700; cursor: pointer; box-shadow: 0 7px 16px rgba(5,59,122,.25); transition: filter .15s, transform .15s; }
-.tn-form button:hover:not(:disabled) { filter: brightness(.92); transform: translateY(-1px); }
-.tn-form button:disabled { opacity: .65; cursor: wait; }
-.tn-arrow { font-size: 23px; font-weight: 400; line-height: 1; }
+.tn-card-logo-img {
+  display: block;
+  width: auto;
+  height: 38px;
+  margin-bottom: 25px;
+  object-fit: contain;
+}
+
+.tn-overline {
+  color: #627899;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.tn-short-line {
+  width: 54px;
+  height: 2px;
+  margin: 22px 0 20px;
+  background: var(--tn-blue);
+}
+
+.tn-card-intro h1 {
+  max-width: 390px;
+  margin: 0;
+
+  color: var(--tn-navy);
+  font-size: clamp(27px, 2.2vw, 33px);
+  font-weight: 650;
+  line-height: 1.27;
+  letter-spacing: -1.15px;
+}
+
+.tn-card-intro h1 span {
+  color: var(--tn-blue);
+}
+
+.tn-intro-copy {
+  max-width: 340px;
+  margin: 13px 0 0;
+
+  color: var(--tn-muted);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+/* ---------- Aniversário institucional ---------- */
+
+.tn-anniversary {
+  display: flex;
+  align-items: center;
+  gap: 19px;
+
+  margin-top: auto;
+  padding-top: 30px;
+}
+
+.tn-number-33-img {
+  display: block;
+  width: auto;
+  height: 75px;
+  object-fit: contain;
+}
+
+.tn-anniversary-divider {
+  width: 1px;
+  height: 43px;
+  margin-left: 5px;
+  background: #7c93b3;
+}
+
+.tn-anniversary-copy {
+  display: grid;
+  gap: 8px;
+}
+
+.tn-anniversary-copy strong {
+  color: var(--tn-navy);
+  font-size: 11px;
+  letter-spacing: 4px;
+}
+
+.tn-anniversary-copy span {
+  color: var(--tn-muted);
+  font-size: 9px;
+  line-height: 1.5;
+  letter-spacing: 1.7px;
+}
+
+/* ---------- Coluna do formulário ---------- */
+
+.tn-form-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  min-width: 0;
+  padding: 0 0 0 32px;
+  border-left: 1px solid #dce4ee;
+}
+
+.tn-mail-icon {
+  display: grid;
+  place-items: center;
+
+  width: 48px;
+  height: 48px;
+  margin-bottom: 18px;
+
+  color: var(--tn-blue);
+  background: #e6eef8;
+  border-radius: 20%;
+}
+
+.tn-mail-icon svg {
+  width: 27px;
+  height: 27px;
+  stroke: currentColor;
+  stroke-width: 1.5;
+}
+
+.tn-form-overline {
+  color: #0d284f;
+}
+
+.tn-form-panel h2 {
+  margin: 14px 0 13px;
+
+  color: var(--tn-navy);
+  font-size: clamp(24px, 2vw, 29px);
+  line-height: 1.2;
+  letter-spacing: -0.9px;
+}
+
+.tn-form-copy {
+  max-width: 370px;
+  margin: 0 0 22px;
+
+  color: var(--tn-muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* ---------- Campos do formulário ---------- */
+
+.tn-form {
+  display: grid;
+  gap: 12px;
+}
+
+.tn-form label {
+  color: #0d284f;
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: 2px;
+}
+
+.tn-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+
+  min-height: 48px;
+  padding: 0 16px;
+
+  background: #ffffff;
+  border: 1px solid #b8cae0;
+  border-radius: 10px;
+
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.tn-input-wrap:focus-within {
+  border-color: var(--tn-blue);
+  box-shadow: 0 0 0 3px rgba(5, 74, 150, 0.15);
+}
+
+.tn-input-wrap svg {
+  flex: 0 0 22px;
+  width: 22px;
+  stroke: #526f97;
+  stroke-width: 1.5;
+}
+
+.tn-input-wrap input {
+  width: 100%;
+  min-width: 0;
+  padding: 0;
+
+  color: #0d284f;
+  background: transparent;
+  border: 0;
+  outline: 0;
+
+  font-family: inherit;
+  font-size: 14px;
+}
+
+.tn-input-wrap input::placeholder {
+  color: #8298b8;
+}
+
+/* ---------- Botão principal ---------- */
+
+.tn-form button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+
+  min-height: 48px;
+  margin-top: 6px;
+  padding: 0 20px;
+
+  color: #ffffff;
+  background: linear-gradient(100deg, #053b7a, #054a96);
+  border: 0;
+  border-radius: 10px;
+
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+
+  cursor: pointer;
+  box-shadow: 0 7px 16px rgba(5, 59, 122, 0.25);
+
+  transition: filter 0.15s, transform 0.15s;
+}
+
+.tn-form button:hover:not(:disabled) {
+  filter: brightness(0.92);
+  transform: translateY(-1px);
+}
+
+.tn-form button:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+
+.tn-arrow {
+  font-size: 23px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+/* ---------- Segurança e acesso administrativo ---------- */
+
 .tn-security-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 23px;
-  gap: 12px;
   flex-wrap: wrap;
+  gap: 12px;
+
+  margin-top: 23px;
 }
 
 .tn-security {
   display: flex;
   align-items: center;
   gap: 8px;
+
   color: #5d7496;
   font-size: 12px;
 }
@@ -116,18 +381,22 @@
 }
 
 .tn-admin-trigger-link {
+  padding: 4px 6px;
+
+  color: #054a96;
   background: transparent;
   border: none;
-  color: #054a96;
+  border-radius: 4px;
+
+  font-family: inherit;
   font-size: 12px;
   font-weight: 600;
+
   cursor: pointer;
   text-decoration: underline;
   text-underline-offset: 3px;
-  padding: 4px 6px;
-  border-radius: 4px;
+
   transition: all 0.2s;
-  font-family: inherit;
 }
 
 .tn-admin-trigger-link:hover {
@@ -135,7 +404,8 @@
   background: rgba(5, 74, 150, 0.08);
 }
 
-/* Modal Microsoft Entra ID */
+/* ---------- Modal de login Microsoft Entra ID ---------- */
+
 .tn-admin-login-card {
   max-width: 500px !important;
   padding: 36px 38px !important;
@@ -143,22 +413,25 @@
 }
 
 .tn-admin-login-header {
-  text-align: center;
   margin-bottom: 22px;
+  text-align: center;
 }
 
 .tn-entra-badge {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+
+  margin-bottom: 12px;
   padding: 5px 12px;
+
+  color: #061a38;
   background: #f0f4f9;
-  border-radius: 20px;
   border: 1px solid #d4e0ee;
+  border-radius: 20px;
+
   font-size: 11px;
   font-weight: 700;
-  color: #061a38;
-  margin-bottom: 12px;
 }
 
 .tn-ms-logo {
@@ -168,8 +441,8 @@
 
 .tn-admin-login-header h2 {
   margin: 0;
-  font-size: 24px;
   color: #061a38;
+  font-size: 24px;
 }
 
 .tn-admin-login-header h2 span {
@@ -178,8 +451,8 @@
 
 .tn-admin-login-sub {
   margin: 6px 0 0;
-  font-size: 13px;
   color: #627899;
+  font-size: 13px;
 }
 
 .tn-entra-quick-section {
@@ -190,9 +463,9 @@
 }
 
 .tn-entra-label {
+  color: #061a38;
   font-size: 11.5px;
   font-weight: 700;
-  color: #061a38;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -207,14 +480,18 @@
   display: flex;
   align-items: center;
   gap: 12px;
+
   padding: 10px 14px;
-  border-radius: 10px;
-  border: 1px solid #d4e0ee;
-  background: #f8fafc;
-  cursor: pointer;
+
   text-align: left;
-  transition: all 0.2s;
   font-family: inherit;
+
+  background: #f8fafc;
+  border: 1px solid #d4e0ee;
+  border-radius: 10px;
+
+  cursor: pointer;
+  transition: all 0.2s;
 }
 
 .tn-entra-account-btn:hover {
@@ -224,32 +501,37 @@
 }
 
 .tn-entra-acc-avatar {
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  background: #054a96;
-  color: #ffffff;
   display: grid;
   place-items: center;
+  flex-shrink: 0;
+
+  width: 34px;
+  height: 34px;
+
+  color: #ffffff;
+  background: #054a96;
+  border-radius: 50%;
+
   font-size: 12px;
   font-weight: 700;
-  flex-shrink: 0;
 }
 
 .tn-entra-acc-info {
-  flex: 1;
   display: flex;
+  flex: 1;
   flex-direction: column;
+  min-width: 0;
 }
 
 .tn-entra-acc-info strong {
-  font-size: 13px;
   color: #061a38;
+  font-size: 13px;
 }
 
 .tn-entra-acc-info span {
-  font-size: 11px;
   color: #627899;
+  font-size: 11px;
+  overflow-wrap: anywhere;
 }
 
 .tn-entra-arrow {
@@ -261,11 +543,12 @@
 .tn-login-divider {
   display: flex;
   align-items: center;
-  text-align: center;
   margin: 18px 0;
+
   color: #8c9eb5;
   font-size: 11px;
   font-weight: 600;
+  text-align: center;
 }
 
 .tn-login-divider::before,
@@ -281,10 +564,11 @@
 
 .tn-admin-notice {
   margin-top: 18px;
-  font-size: 11px;
+
   color: #627899;
-  text-align: center;
+  font-size: 11px;
   line-height: 1.5;
+  text-align: center;
 }
 
 .tn-admin-login-field {
@@ -293,12 +577,13 @@
 
 .tn-admin-login-field label {
   display: block;
+  margin-bottom: 8px;
+
+  color: #0d284f;
   font-size: 10px;
   font-weight: 750;
   letter-spacing: 1.5px;
-  color: #0d284f;
   text-transform: uppercase;
-  margin-bottom: 8px;
 }
 
 .tn-admin-login-form {
@@ -306,42 +591,348 @@
   flex-direction: column;
   gap: 4px;
 }
-.tn-message { margin-top: 17px; padding: 12px 14px; border: 1px solid #c9e7d3; border-radius: 8px; background: #f0faf3; color: #17683a; font-size: 12px; line-height: 1.6; overflow-wrap: anywhere; }
-.tn-message.tn-error { border-color: #f0caca; background: #fff2f2; color: #991b1b; }
-.tn-footer { width: min(100%, 1420px); display: flex; align-items: center; gap: 17px; margin-top: auto; padding-top: 50px; color: var(--tn-navy); font-size: 9px; font-weight: 650; letter-spacing: 2.5px; }
-.tn-footer-rule { width: 50px; height: 1px; background: #91a8c7; }
 
-@media (min-width: 1500px) { .tn-card { width: 1080px; min-height: 555px; padding: 55px 60px; } }
-@media (max-width: 900px) {
-  .tn-page { padding: 32px 28px 24px; }
-  .tn-header { margin-bottom: 48px; }
-  .tn-card { padding: 36px 32px; }
-  .tn-card-intro { padding-right: 28px; }
-  .tn-form-panel { padding-left: 28px; }
-  .tn-header-tagline { font-size: 9px; letter-spacing: 1.6px; }
-  .tn-header-tagline b { margin: 0 4px; }
-  .tn-anniversary { gap: 12px; }
-  .tn-number-33-img { height: 60px; }
+/* ---------- Mensagens de retorno ---------- */
+
+.tn-message {
+  margin-top: 17px;
+  padding: 12px 14px;
+
+  color: #17683a;
+  background: #f0faf3;
+  border: 1px solid #c9e7d3;
+  border-radius: 8px;
+
+  font-size: 12px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
 }
+
+.tn-message.tn-error {
+  color: #991b1b;
+  background: #fff2f2;
+  border-color: #f0caca;
+}
+
+/* ---------- Rodapé ---------- */
+
+.tn-footer {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+
+  width: min(100%, 1240px);
+  margin-top: auto;
+  padding-top: 28px;
+
+  color: var(--tn-navy);
+  font-size: 9px;
+  font-weight: 650;
+  letter-spacing: 2.5px;
+}
+
+.tn-footer-rule {
+  width: 50px;
+  height: 1px;
+  background: #91a8c7;
+}
+
+/* =========================================================
+   NOTEBOOK — 1366 × 768
+   Mais compacto sem reduzir o zoom do navegador
+   ========================================================= */
+
+@media (min-width: 1051px) and (max-width: 1450px) {
+  .tn-page {
+    padding: 14px 28px 12px;
+  }
+
+  .tn-header {
+    margin-bottom: 16px;
+  }
+
+  .tn-logo-img {
+    height: 32px;
+  }
+
+  .tn-card {
+    width: min(100%, 900px);
+    padding: 24px 30px;
+  }
+
+  .tn-card-intro {
+    padding: 6px 24px 6px 0;
+  }
+
+  .tn-card-logo-img {
+    height: 32px;
+    margin-bottom: 16px;
+  }
+
+  .tn-card-intro h1 {
+    font-size: 28px;
+    line-height: 1.2;
+  }
+
+  .tn-short-line {
+    margin: 16px 0;
+  }
+
+  .tn-intro-copy {
+    margin-top: 10px;
+    font-size: 12px;
+    line-height: 1.55;
+  }
+
+  .tn-anniversary {
+    gap: 12px;
+    padding-top: 16px;
+  }
+
+  .tn-number-33-img {
+    height: 48px;
+  }
+
+  .tn-anniversary-copy {
+    gap: 5px;
+  }
+
+  .tn-anniversary-copy strong {
+    font-size: 10px;
+    letter-spacing: 2.5px;
+  }
+
+  .tn-anniversary-copy span {
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
+
+  .tn-form-panel {
+    padding-left: 24px;
+  }
+
+  .tn-mail-icon {
+    width: 42px;
+    height: 42px;
+    margin-bottom: 12px;
+  }
+
+  .tn-mail-icon svg {
+    width: 23px;
+    height: 23px;
+  }
+
+  .tn-form-panel h2 {
+    margin: 10px 0;
+    font-size: 24px;
+  }
+
+  .tn-form-copy {
+    margin-bottom: 14px;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .tn-form {
+    gap: 9px;
+  }
+
+  .tn-form label {
+    font-size: 9px;
+    letter-spacing: 1.5px;
+  }
+
+  .tn-input-wrap {
+    min-height: 42px;
+    padding: 0 12px;
+    gap: 10px;
+  }
+
+  .tn-input-wrap input {
+    font-size: 13px;
+  }
+
+  .tn-form button {
+    min-height: 42px;
+    margin-top: 3px;
+    font-size: 13px;
+  }
+
+  .tn-security-row {
+    margin-top: 14px;
+    gap: 8px;
+  }
+
+  .tn-security {
+    font-size: 10px;
+  }
+
+  .tn-admin-trigger-link {
+    font-size: 11px;
+  }
+
+  .tn-footer {
+    padding-top: 14px;
+    font-size: 8px;
+    letter-spacing: 1.8px;
+  }
+}
+
+/* =========================================================
+   TABLETS E JANELAS MÉDIAS
+   ========================================================= */
+
+@media (min-width: 651px) and (max-width: 1050px) {
+  .tn-page {
+    padding: 28px 24px 20px;
+  }
+
+  .tn-header {
+    margin-bottom: 30px;
+  }
+
+  .tn-card {
+    padding: 30px 26px;
+  }
+
+  .tn-card-intro {
+    padding-right: 22px;
+  }
+
+  .tn-card-intro h1 {
+    font-size: clamp(24px, 3vw, 30px);
+  }
+
+  .tn-form-panel {
+    padding-left: 22px;
+  }
+
+  .tn-header-tagline {
+    font-size: 9px;
+    letter-spacing: 1.6px;
+  }
+
+  .tn-header-tagline b {
+    margin: 0 4px;
+  }
+
+  .tn-anniversary {
+    gap: 12px;
+  }
+
+  .tn-number-33-img {
+    height: 60px;
+  }
+}
+
+/* =========================================================
+   CELULARES
+   ========================================================= */
+
 @media (max-width: 650px) {
-  .tn-page { min-height: 100vh; padding: 25px 16px 22px; overflow-y: auto; }
-  .tn-header { align-items: flex-start; flex-direction: column; gap: 15px; margin-bottom: 30px; }
-  .tn-logo-img { height: 34px; }
-  .tn-card-logo-img { height: 32px; margin-bottom: 17px; }
-  .tn-header-tagline { white-space: normal; font-size: 8px; letter-spacing: 1.4px; }
-  .tn-card { grid-template-columns: 1fr; padding: 28px 23px; border-radius: 16px; }
-  .tn-card-intro { padding: 0 0 28px; }
-  .tn-short-line { margin: 22px 0 18px; }
-  .tn-card-intro h1 { font-size: 29px; }
-  .tn-intro-copy { font-size: 13px; }
-  .tn-anniversary { margin-top: 25px; padding-top: 20px; }
-  .tn-number-33-img { height: 50px; }
-  .tn-form-panel { border-left: 0; border-top: 1px solid #dce4ee; padding: 28px 0 0; }
-  .tn-mail-icon { width: 48px; height: 48px; margin-bottom: 20px; }
-  .tn-form-panel h2 { font-size: 27px; }
-  .tn-form-copy { font-size: 13px; margin-bottom: 24px; }
-  .tn-footer { flex-wrap: wrap; gap: 10px; padding-top: 28px; font-size: 8px; letter-spacing: 1.5px; }
-  .tn-footer-rule { width: 28px; }
+  .tn-page {
+    min-height: 100vh;
+    padding: 25px 16px 22px;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .tn-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+  }
+
+  .tn-logo-img {
+    height: 34px;
+  }
+
+  .tn-card {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 28px 23px;
+    border-radius: 16px;
+  }
+
+  .tn-card-intro {
+    padding: 0 0 28px;
+  }
+
+  .tn-card-logo-img {
+    height: 32px;
+    margin-bottom: 17px;
+  }
+
+  .tn-header-tagline {
+    white-space: normal;
+    font-size: 8px;
+    letter-spacing: 1.4px;
+  }
+
+  .tn-short-line {
+    margin: 22px 0 18px;
+  }
+
+  .tn-card-intro h1 {
+    font-size: 29px;
+  }
+
+  .tn-intro-copy {
+    font-size: 13px;
+  }
+
+  .tn-anniversary {
+    margin-top: 25px;
+    padding-top: 20px;
+  }
+
+  .tn-number-33-img {
+    height: 50px;
+  }
+
+  .tn-form-panel {
+    padding: 28px 0 0;
+    border-top: 1px solid #dce4ee;
+    border-left: 0;
+  }
+
+  .tn-mail-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 20px;
+  }
+
+  .tn-form-panel h2 {
+    font-size: 27px;
+  }
+
+  .tn-form-copy {
+    margin-bottom: 24px;
+    font-size: 13px;
+  }
+
+  .tn-input-wrap,
+  .tn-form button {
+    min-height: 48px;
+  }
+
+  .tn-footer {
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-top: 28px;
+
+    font-size: 8px;
+    letter-spacing: 1.5px;
+  }
+
+  .tn-footer-rule {
+    width: 28px;
+  }
+
+  .tn-admin-login-card {
+    padding: 28px 22px !important;
+  }
+
   .tn-blue-sweep {
     width: 140vw;
     height: 40vh;
@@ -351,4 +942,16 @@
     transform: rotate(-5deg);
   }
 }
-@media (prefers-reduced-motion: reduce) { .tn-page *, .tn-page *::before, .tn-page *::after { transition: none !important; } }
+
+/* ---------- Acessibilidade ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .tn-page *,
+  .tn-page *::before,
+  .tn-page *::after {
+    scroll-behavior: auto !important;
+    animation: none !important;
+    transition: none !important;
+  }
+}

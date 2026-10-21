@@ -654,3 +654,47 @@
         padding: 28px 22px;
     }
 }
+
+
+/* Pré-visualização mais compacta */
+.tn-card-preview-page {
+    width: min(100%, 900px);
+    padding: 30px 36px;
+    border-radius: 16px;
+}
+
+.tn-card-center {
+    padding: 36px;
+}
+
+.tn-card-header {
+    margin-bottom: 20px;
+}
+
+.tn-signature-container {
+    padding: 20px;
+    margin-bottom: 24px;
+}
+
+.tn-admin-signature-wrap {
+    padding: 16px;
+}
+
+.tn-btn-primary,
+.tn-btn-secondary {
+    min-height: 46px;
+}
+
+@media (max-width: 650px) {
+    .tn-card-preview-page {
+        padding: 24px 16px;
+    }
+
+    .tn-signature-container {
+        padding: 10px;
+    }
+
+    .tn-admin-signature-wrap {
+        padding: 10px;
+    }
+}
